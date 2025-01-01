@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 30px;
+            margin-right: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search button {
+            background: #0077b6;
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+        }
+
+        .weather-info {
+            text-align: center;
+        }
+
+        .city {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .date {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .temperature {
+            font-size: 48px;
+            font-weight: bold;
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        .weather-condition {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .condition-item {
+            text-align: center;
+        }
+
+        .condition-item i {
+            font-size: 24px;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .condition-item .label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .condition-item .value {
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .forecast {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .forecast-item {
+            text-align: center;
+        }
+
+        .forecast-item .day {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .forecast-item i {
+            color: #0077b6;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .forecast-item .temp {
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search">
+            <form method='post'>
+            {% csrf_token %}
+            <input type="text" name='city' placeholder="Search city...">
+            <button><i class="fas fa-search"></i></button>
+            <form>
+        </div>
+        
+        <div class="weather-info">
+            <div class="city">{{city}}, {{description}}</div>
+            <div class="date">{{day}}</div>
+            <div class="temperature">{{temp}}°C</div>
+            
+            <div class="weather-condition">
+                <div class="condition-item">
+                    <i class="fas fa-wind"></i>
+                    <div class="label">Wind</div>
+                    <div class="value">{{wind}} km/h</div>
+                </div>
+                <div class="condition-item">
+                    <i class="fas fa-tint"></i>
+                    <div class="label">Humidity</div>
+                    <div class="value">{{humidity}}%</div>
+                </div>
+                <div class="condition-item">
+                    <i class="fas fa-cloud-rain"></i>
+                    <div class="label">Rain</div>
+                    <div class="value">23%</div>
+                </div>
+            </div>
+            
+            <div class="forecast">
+                <div class="forecast-item">
+                    <div class="day">Thu</div>
+                    <i class="fas fa-cloud-sun"></i>
+                    <div class="temp">23°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="day">Fri</div>
+                    <i class="fas fa-sun"></i>
+                    <div class="temp">25°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="day">Sat</div>
+                    <i class="fas fa-cloud"></i>
+                    <div class="temp">22°</div>
+                </div>
+                <div class="forecast-item">
+                    <div class="day">Sun</div>
+                    <i class="fas fa-cloud-sun"></i>
+                    <div class="temp">24°</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
